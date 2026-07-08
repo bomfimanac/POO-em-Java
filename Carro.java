@@ -1,27 +1,45 @@
-// Herança: Carro é uma subclasse de Automovel
+// A palavra-chave 'extends' liga a classe Carro à classe mãe Automovel
 public class Carro extends Automovel {
-    private int numeroPortas;
-    private String tipoCombustivel;
+
+    // Atributos específicos e exclusivos da classe Carro
+    //Criar novos atributos para classe Carro
+    private int quantidadePortas;
+    private String tipoCarroceria; // Ex: Sedan, Hatch, SUV, Cupê
 
     // Construtor da subclasse
-    public Carro(String marca, String modelo, int ano, double preco, int numeroPortas, String tipoCombustivel) {
-        super(marca, modelo, ano, preco); // Chama o construtor da superclasse
-        this.numeroPortas = numeroPortas;
-        this.tipoCombustivel = tipoCombustivel;
+    public Carro(String marca, String modelo, int ano, double preco, int quantidadePortas, String tipoCarroceria) {
+        // Envia obrigatoriamente os dados genéricos para o construtor da superclasse (Automovel)
+        super(marca, modelo, ano, preco);
+
+        // Inicializa as propriedades que pertencem apenas ao Carro
+        this.quantidadePortas = quantidadePortas;
+        this.tipoCarroceria = tipoCarroceria;
     }
 
-    // Getters e Setters específicos da subclasse
-    public int getNumeroPortas() { return numeroPortas; }
-    public void setNumeroPortas(int numeroPortas) { this.numeroPortas = numeroPortas; }
+    // Método de comportamento exclusivo do Carro de passeio
+    public void abrirPortaMalas() {
+        System.out.println("O porta-malas do " + getModelo() + " (" + this.tipoCarroceria + ") foi aberto pelo controle remoto.");
+    }
 
-    public String getTipoCombustivel() { return tipoCombustivel; }
-    public void setTipoCombustivel(String tipoCombustivel) { this.tipoCombustivel = tipoCombustivel; }
-
-    // Método específico da subclasse
+    // Sobrescrita de Método (Polimorfismo): Adaptando a Ficha Técnica para as características de um Carro
     @Override
     public void exibirFichaTecnica() {
-        super.exibirFichaTecnica(); // Chama o método da superclasse
-        System.out.println("Número de Portas: " + this.numeroPortas);
-        System.out.println("Tipo de Combustível: " + this.tipoCombustivel);
+        // Invoca o comportamento padrão escrito em Automovel (Evita duplicação de código)
+        super.exibirFichaTecnica();
+        
+        // Adiciona informações específicas do veículo de passeio
+        System.out.println("--- Especificações de Veículo de Passeio ---");
+        System.out.println("Quantidade de Portas: " + this.quantidadePortas);
+        System.out.println("Tipo de Carroceria: " + this.tipoCarroceria);
+        System.out.println("==================================\n");
     }
+
+    // Getters e Setters específicos
+    public int getQuantidadePortas() { return quantidadePortas; }
+    public void setQuantidadePortas(int quantidadePortas) { this.quantidadePortas = quantidadePortas; }
+
+    public String getTipoCarroceria() { return tipoCarroceria; }
+    public void setTipoCarroceria(String tipoCarroceria) { this.tipoCarroceria = tipoCarroceria; }
 }
+
+/*3. Arquivo: Carro.java  SubClasse, classe filho , classe filha*/
